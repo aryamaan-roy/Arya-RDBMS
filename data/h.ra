@@ -1,0 +1,12 @@
+LOAD Student
+LOAD Advisor
+LOAD Marks
+h1 <- CROSS Student Advisor
+h2 <- SELECT Advisor_id == Adv_Id FROM h1
+h3 <- SELECT Advisor_id == 2 FROM h2
+h4 <- CROSS h3 Marks
+h5 <- SELECT h3_Stud_Id == Marks_Stud_Id FROM h4
+h6 <- SELECT Maths_marks > 90 FROM h5
+h7 <- PROJECT h3_Stud_Id FROM h6
+RENAME h3_Stud_Id TO Stud_Id FROM h7
+PRINT h7
